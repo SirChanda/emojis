@@ -1,0 +1,14 @@
+.header {
+  background-color: var(--default-header);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* font-weight: lighter; */
+  font-size: 20px;
+  color: #fff;
+}
+
+.header a {
+  color: #fff;
+}
