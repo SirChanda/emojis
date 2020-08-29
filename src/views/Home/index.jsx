@@ -4,8 +4,10 @@ import Card from "../../components/Card";
 import "./main.css";
 
 export default () => {
-  const [emojis, setEmojis] = useState([]);
+  const [emojis, setEmojis] = useState({ total: [], filtered: [] });
   const [params, setParams] = useState("");
+
+  const searchField = useRef(null);
 
   useEffect(() => {
     fetch(
@@ -13,39 +15,48 @@ export default () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        setEmojis(Object.entries(result));
+        const data = Object.entries(result);
+        setEmojis({ ...emojis, total: data, filtered: data });
       });
-  });
+  }, []);
 
   const filterEmojis = (param) => {
-    return emojis.map((item) => item[0].match(`/${param}.*/`));
+    const filtered = emojis["total"].filter((item) => {
+      const regex = new RegExp(`^${param.toLowerCase()}`);
+
+      return regex.test(item[0].toLowerCase());
+    });
+    console.log(filtered);
+    setEmojis({
+      ...emojis,
+      filtered,
+    });
   };
 
   return (
     <div>
       <Header></Header>
       <div className="results">
-        {emojis.length > 0 ? (
-          <div className="search">
-            <input
-              type="text"
-              placeholder="write to search... (example: ireland)"
-              className="text"
-              onChange={(e) => setParams(e.target.value)}
-            />
-            <input
-              type="button"
-              value="Search"
-              className="button"
-              onClick={(e) => setParams(e.target.value)}
-            />
-          </div>
-        ) : (
-          ""
-        )}
+        <div className="search">
+          <input
+            type="text"
+            placeholder="write to search... (example: ireland)"
+            className="text"
+            ref={searchField}
+            onChange={(e) => setParams(e.target.value)}
+          />
+          <input
+            type="button"
+            value="Search"
+            className="button"
+            onClick={() => filterEmojis(searchField.current.value)}
+          />
+        </div>
         <div className="emojis">
-          {filterEmojis(params).length > 0 ? (
-            emojis.map((item) => <Card name={item[0]} img={item[1]}></Card>)
+          {emojis["filtered"].length > 0 ? (
+            emojis["filtered"].map((item) => (
+              <Card name={item[0]} img={item[1]}></Card>
+            ))
           ) : (
             <p>No results</p>
           )}
