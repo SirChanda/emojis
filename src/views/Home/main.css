@@ -1,0 +1,22 @@
+.emojis {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* flex-direction: row;
+  flex-wrap: wrap; */
+  flex-flow: row wrap;
+  margin-top: 1rem;
+}
+
+.emojis p {
+  font-weight: bold;
+  font-size: 20px;
+  color: var(--second-font-color);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}

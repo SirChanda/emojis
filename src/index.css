@@ -1,6 +1,10 @@
 :root {
   --default-background-color: #d8dff0;
   --default-header: #7231a8;
+  --default-card: #fff;
+  --second-font-color: #3820ae;
+  --default-button: #5d2286;
+  --default-button-font: #fff;
 }
 
 * {
@@ -18,4 +22,25 @@ body {
 
 a {
   text-decoration: none;
+}
+
+input {
+  outline: none;
+  border: none;
+  margin-left: 1rem;
+}
+
+.text {
+  border-radius: 5px;
+  width: 230px;
+  padding: 10px 5px;
+}
+
+.button {
+  border-radius: 5px;
+  width: 200px;
+  padding: 10px 0;
+  background-color: var(--default-button);
+  color: var(--default-button-font);
+  font-size: 15px;
 }
