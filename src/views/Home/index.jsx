@@ -26,7 +26,7 @@ export default () => {
 
       return regex.test(item[0].toLowerCase());
     });
-    console.log(filtered);
+
     setEmojis({
       ...emojis,
       filtered,

@@ -43,4 +43,5 @@ input {
   background-color: var(--default-button);
   color: var(--default-button-font);
   font-size: 15px;
+  cursor: pointer;
 }
